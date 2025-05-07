@@ -1,19 +1,17 @@
 *** Settings ***
 Library    SeleniumLibrary
 Resource    ../resources/login_keywords.resource
-Test Setup    Open Browser    browser=edge
+Suite Setup    Open Browser    browser=edge
 
 *** Variables ***
 ${URL}   https://www.saucedemo.com
-${BROWSER}    edge
-${USERNAME}   standard_user
-${PASSWORD}   secret_sauce
 
  
 *** Test Cases ***
+
 Successful Login
     I nagivate to the login page    ${URL}
-    I input correct Credentials    ${USERNAME}    ${PASSWORD}
+    I input correct Credentials  
     I Click on the Login Button
     I am able view the home page
 
@@ -21,24 +19,24 @@ Unsuccessful Login - No Credentials
     I nagivate to the login page    ${URL}
     I input no credentials
     I Click on the Login Button
-    I am able to see the expected error message  Epic sadface: Username is required
+    I am able to see the expected error message for no credentials
 
 
 Unsuccessful Login - No Username
     I nagivate to the login page    ${URL}
-    I input only the password    ${PASSWORD}
+    I input only the password   
     I Click on the Login Button
-    I am able to see the expected error message    Epic sadface: Username is required
+    I am able to see the expected error message for no username
 
 Unsuccessful Login - No Password
     I nagivate to the login page    ${URL}
-    I input only the username    ${USERNAME}
+    I input only the username  
     I Click on the Login Button
-     I am able to see the expected error message  Epic sadface: Password is required
+     I am able to see the expected error message for no password
 
 
 Unsuccessful Login - Wrong Credentials
     I nagivate to the login page    ${URL}
-    I Input wrong Credentials    asfafdasfaf    cdsffdafdsa
+    I Input wrong Credentials 
     I Click on the Login Button
-    I am able to see the expected error message    Epic sadface: Username and password do not match any user in this service
+    I am able to see the expected error message for wrong credentials
